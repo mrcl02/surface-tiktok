@@ -1,0 +1,14 @@
+{
+  "name": "surface-tiktok",
+  "version": "1.0.4",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^latest",
+    "playwright": "^latest",
+    "playwright-stealth": "^latest",
+    "sqlite3": "^latest"
+  }
+}
