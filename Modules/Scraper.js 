@@ -1,0 +1,48 @@
+/**
+ * MODULE: SCRAPER
+ * Fokus: Mencari video viral berdasarkan kata kunci dan mengambil link video
+ */
+class Scraper {
+    constructor(page) {
+        this.page = page;
+    }
+
+    /**
+     * Mencari video viral di TikTok berdasarkan keyword
+     * @param {string} keyword - Kata kunci pencarian (misal: "skincare")
+     * @param {number} limit - Jumlah maksimal link yang diambil
+     */
+    async findViralVideos(keyword, limit = 10) {
+        console.log(`[SCRAPER] Mencari video viral untuk: ${keyword}`);
+        const searchUrl = `https://www.tiktok.com/search/video?q=${encodeURIComponent(keyword)}`;
+        
+        try {
+            await this.page.goto(searchUrl, { waitUntil: 'networkidle', timeout: 60000 });
+            
+            // Scroll ke bawah beberapa kali untuk memicu lazy loading
+            for (let i = 0; i < 3; i++) {
+                await this.page.mouse.wheel(0, 1500);
+                await this.page.waitForTimeout(2000);
+            }
+
+            const links = await this.page.evaluate((maxLinks) => {
+                const results = [];
+                const anchors = document.querySelectorAll('a');
+                for (const a of anchors) {
+                    if (a.href.includes('/video/') && results.length < maxLinks) {
+                        results.push(a.href);
+                    }
+                }
+                return [...new Set(results)]; // Mengambil link unik
+            }, limit);
+
+            console.log(`[SCRAPER] Menemukan ${links.length} video potensial.`);
+            return links;
+        } catch (error) {
+            console.error(`[SCRAPER ERROR] Gagal mencari video:`, error.message);
+            return [];
+        }
+    }
+}
+
+module.exports = Scraper;

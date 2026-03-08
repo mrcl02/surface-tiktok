@@ -1,14 +1,32 @@
 {
   "name": "surface-tiktok",
-  "version": "1.0.4",
-  "main": "src/main.js",
+  "version": "2.1.0",
+  "description": "Automated TikTok Marketing System with Stealth Browser and Proxy Rotation",
+  "main": "launcher.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "node launcher.js",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "tiktok",
+    "bot",
+    "marketing",
+    "automation",
+    "playwright",
+    "stealth"
+  ],
+  "author": "Marketing Tech Team",
+  "license": "ISC",
   "dependencies": {
-    "electron": "^latest",
-    "playwright": "^latest",
-    "playwright-stealth": "^latest",
-    "sqlite3": "^latest"
+    "axios": "^1.6.0",
+    "playwright": "^1.40.0",
+    "sqlite3": "^5.1.6",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.0"
   }
 }

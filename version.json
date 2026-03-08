@@ -1,0 +1,11 @@
+{
+  "version": "2.1.0",
+  "last_update": "2024-05-20",
+  "changelog": [
+    "Peningkatan fitur Stealth pada Browser-Engine.js",
+    "Perbaikan logika rotasi IP pada Proxy-Controller.js",
+    "Penambahan GUI Dashboard untuk Tim Marketing",
+    "Optimasi Comment-Engine untuk menghindari deteksi spam"
+  ],
+  "required_node_version": ">=16.0.0"
+}
